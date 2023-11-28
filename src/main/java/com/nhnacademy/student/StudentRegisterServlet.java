@@ -1,7 +1,6 @@
 package com.nhnacademy.student;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,21 +10,30 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@WebServlet(name="studnetListServlet", urlPatterns = "/student/list")
+@WebServlet(name = "stdentRegisterServlet", urlPatterns = "/student/register")
 public class StudentRegisterServlet extends HttpServlet {
+
     private StudentRepository studentRepository;
 
-    @Override
-    public void init(ServletConfig config) throws ServletException {
+    public void init(ServletConfig config) throws ServletException{
         studentRepository =(StudentRepository) config.getServletContext().getAttribute("studentRepository");
-        //ServletConfig에서 ServletContext를 얻어옵니다.
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Student> studentList=studentRepository.getStdents();
-        req.setAttribute("studentList",studentList);
-        req.getRequestDispatcher("/student/list.jsp").forward(req, resp);
-
-        //dispatch -> 명령을 지시하거나 전달하는 것
+    protected  void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/student/register.jsp").forward(req, resp);
     }
+
+    protected  void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+        String id = req.getParameter("id");
+        String name = req.getParameter("name");
+        Gender gender = Gender.valueOf(req.getParameter("gender"));
+        int age= Integer.parseInt(req.getParameter("age"));
+
+        Student student = new Student(id, name, gender, age);
+        studentRepository.save(student);
+        //resp.sendRedirect("/student/view?id=" + student.getId());
+        resp.sendRedirect("/student/list" );
+    }
+
 }
