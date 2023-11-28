@@ -13,6 +13,13 @@ public class Student {
 
     private LocalDateTime createdAt;
 
+    public Student(String id, String name, Gender gender, int age) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+    }
+
     public String getId() {
         return id;
     }
@@ -32,4 +39,6 @@ public class Student {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+
 }
