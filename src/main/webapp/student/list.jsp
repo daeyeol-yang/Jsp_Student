@@ -52,7 +52,7 @@
             <td>${studentList.gender}</td>
             <td>${studentList.age}</td>
             <td>
-                <a href="/student/list">조회</a>
+                <a href="/student/view?id=${studentList.id}">조회</a>
             </td>
 
         </tr>

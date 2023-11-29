@@ -13,11 +13,12 @@ public class Student {
 
     private LocalDateTime createdAt;
 
-    public Student(String id, String name, Gender gender, int age) {
+    public Student(String id, String name, Gender gender, int age, LocalDateTime time) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.age = age;
+        this.createdAt=time;
     }
 
     public String getId() {

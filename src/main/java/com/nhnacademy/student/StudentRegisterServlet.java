@@ -1,6 +1,7 @@
 package com.nhnacademy.student;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,8 +30,9 @@ public class StudentRegisterServlet extends HttpServlet {
         String name = req.getParameter("name");
         Gender gender = Gender.valueOf(req.getParameter("gender"));
         int age= Integer.parseInt(req.getParameter("age"));
+        LocalDateTime time = LocalDateTime.now();
 
-        Student student = new Student(id, name, gender, age);
+        Student student = new Student(id, name, gender, age, time);
         studentRepository.save(student);
         //resp.sendRedirect("/student/view?id=" + student.getId());
         resp.sendRedirect("/student/list" );

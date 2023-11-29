@@ -1,5 +1,6 @@
 package com.nhnacademy.student;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -24,7 +25,8 @@ public class WebApplicationListener  implements ServletContextListener {
             Gender gender =(random.nextBoolean())? Gender.M:Gender.F;
 
             int age = random.nextInt(10)+20;
-            Student student = new Student(id,name,gender,age);
+            LocalDateTime current = LocalDateTime.now();
+            Student student = new Student(id,name,gender,age, current);
             studentRepository.save(student);
         }
         context.setAttribute("studentRepository", studentRepository);
