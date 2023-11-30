@@ -25,6 +25,9 @@
 
 <body>
 <h1>학생 등록</h1>
+
+
+
 <form method="post" action="${action}">
     <table>
         <tbody>
@@ -59,7 +62,16 @@
         </tbody>
     </table>
     <p>
-        <button type="submit">등록</button>
+        <button type="submit">
+            <c:choose>
+                <c:when test="${empty student}">
+                    등록
+                </c:when>
+                <c:otherwise>
+                    수정
+                </c:otherwise>
+            </c:choose>
+        </button>
     </p>
 </form>
 </body>

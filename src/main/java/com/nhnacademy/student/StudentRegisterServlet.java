@@ -21,11 +21,12 @@ public class StudentRegisterServlet extends HttpServlet {
     }
 
     protected  void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         req.getRequestDispatcher("/student/register.jsp").forward(req, resp);
     }
 
     protected  void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
+        log.info("register call()");
         String id = req.getParameter("id");
         String name = req.getParameter("name");
         Gender gender = Gender.valueOf(req.getParameter("gender"));

@@ -62,14 +62,20 @@
   <li><a href="/student/list">리스트</a></li>
   <li>
     <!-- todo ${update_link} 설정 c:url -->
+  <c:url value="/student/update" var="update_link">
+    <c:param name="id" value="${student.id}" />
+  </c:url>
     <a href="${update_link}">수정</a>
   </li>
   <li>
     <!-- todo 삭제버튼 구현, method=post-->
+    <form method="post" action="/student/delete">
+      <input type="hidden" name="id" value="${student.id}">
 
       <button type="submit">삭제</button>
+    </form>
 
- </li>
+  </li>
 
 </ul>
 
