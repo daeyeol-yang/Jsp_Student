@@ -19,7 +19,9 @@ public class StudentViewServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException{
         studentRepository =(StudentRepository) config.getServletContext().getAttribute("studentRepository");
-
+        if (studentRepository == null) {
+            throw new ServletException("StudentRepository not found in ServletContext");
+        }
     }
 
 

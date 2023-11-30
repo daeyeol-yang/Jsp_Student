@@ -19,6 +19,9 @@ public class StudentListServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         studentRepository =(StudentRepository) config.getServletContext().getAttribute("studentRepository");
         //ServletConfig에서 ServletContext를 얻어옵니다.
+        if (studentRepository == null) {
+            throw new ServletException("StudentRepository not found in ServletContext");
+        }
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -24,9 +24,18 @@
 </head>
 
 <body>
-<h1>학생 등록</h1>
 
+<c:choose>
+    <c:when test="${empty student}">
+        <h1>학생 등록</h1>
+        <c:set var="action" value="/student/register" />
 
+    </c:when>
+    <c:otherwise>
+        <c:set var="action" value="/student/update" />
+        <h1>학생 수정</h1>
+    </c:otherwise>
+</c:choose>
 
 <form method="post" action="${action}">
     <table>

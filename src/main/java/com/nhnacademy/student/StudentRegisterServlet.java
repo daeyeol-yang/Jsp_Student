@@ -18,6 +18,9 @@ public class StudentRegisterServlet extends HttpServlet {
 
     public void init(ServletConfig config) throws ServletException{
         studentRepository =(StudentRepository) config.getServletContext().getAttribute("studentRepository");
+        if (studentRepository == null) {
+            throw new ServletException("StudentRepository not found in ServletContext");
+        }
     }
 
     protected  void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
